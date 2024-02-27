@@ -2,7 +2,6 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
 	"net/http"
 
 	"github.com/go-chi/chi/middleware"
@@ -14,7 +13,7 @@ import (
 )
 
 func main() {
-	db, err := sql.Open("mysql", "root:root@tcp(localhost:3306)/imersao17")
+	db, err := sql.Open("mysql", "root:password@tcp(localhost:3306)/imersao17")
 	if err != nil {
 		panic(err)
 	}
@@ -43,10 +42,9 @@ func main() {
 	c.Route("/products", func(r chi.Router) {
 		r.Get("/", webProductHandler.GetProducts)
 		r.Get("/{id}", webProductHandler.GetProduct)
-		r.Get("/{categoryID}", webProductHandler.GetProductByCategoryID)
+		r.Get("/categories/{categoryID}", webProductHandler.GetProductByCategoryID)
 		r.Post("/", webProductHandler.CreateProduct)
 	})
 
-	fmt.Println("Server running on port 8080")
 	http.ListenAndServe(":8080", c)
 }

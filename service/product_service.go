@@ -26,6 +26,7 @@ func (productService *ProductService) GetProducts() ([]*entity.Product, error) {
 
 func (productService *ProductService) GetProduct(id string) (*entity.Product, error) {
 	product, err := productService.ProductDB.GetProduct(id)
+
 	if err != nil {
 		return nil, err
 	}

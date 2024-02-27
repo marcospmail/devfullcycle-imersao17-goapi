@@ -38,6 +38,7 @@ func (pd *ProductDB) GetProducts() ([]*entity.Product, error) {
 
 func (pd *ProductDB) GetProduct(id string) (*entity.Product, error) {
 	var product entity.Product
+
 	err := pd.db.QueryRow("SELECT id, name, description, price, category_id, image_url FROM products WHERE id = ?", id).Scan(&product.ID, &product.Name, &product.Description, &product.Price, &product.CategoryID, &product.ImageURL)
 
 	if err != nil {
