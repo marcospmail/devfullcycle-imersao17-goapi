@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"net/http"
 
 	"github.com/go-chi/chi/middleware"
@@ -46,5 +47,6 @@ func main() {
 		r.Post("/", webProductHandler.CreateProduct)
 	})
 
+	fmt.Print("Listening on port 8080")
 	http.ListenAndServe(":8080", c)
 }

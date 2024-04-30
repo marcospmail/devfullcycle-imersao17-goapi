@@ -5,10 +5,9 @@ services:
     container_name: mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: imersao17
-      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root
     ports:
       - 3306:3306
     volumes:
       - .docker/mysql:/var/lib/mysql
+      - ./insert.sql:/docker-entrypoint-initdb.d/insert.sql
